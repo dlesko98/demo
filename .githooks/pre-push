@@ -1,0 +1,10 @@
+#!/bin/bash
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+push_command=`ps -ocommand= -p $PPID`
+force_flag="force|-f"
+
+if [[ "$branch" = "master" && !("$push_command" =~ $force_flag) ]]; then
+ echo "You can't push directly to master branch"
+ exit 1
+fi (edited) 
