@@ -1,0 +1,18 @@
+#!/bin/bash
+
+commit_msg_file="$1"
+regex="^\[?PCAUT\-\d{3,4}\]?\s+.+$"
+
+if [[ -f "$commit_msg_file" ]]; then
+    commit_message=$(cat "$commit_msg_file")
+    if [[ "$commit_message" =~ ^\[?PCAUT-[0-9]{3,4}\]?[[:space:]]+.+$ ]];
+    then
+	echo "Success";
+	exit 0;
+    else
+	echo "Failed";
+	exit 1;
+    fi
+fi
+
+exit 0
